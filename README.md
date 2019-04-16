@@ -1,5 +1,5 @@
 # WindowsAutopilotIntune_Module_Updates
-![alt text](https://github.com/damienvanrobaeys/SimpleDialogs_WPF_PS1/blob/master/GIF/simpledialog_basic.gif)
+![alt text](https://github.com/damienvanrobaeys/WindowsAutopilotIntune_Module_Updates/blob/master/manage_autopilot_preview.jpg)
 
 **More cmdlet for the Windows Autopilot Intune module**
 
