@@ -7,6 +7,19 @@ The repo is composed of two scripts:
 1. WindowsAutopilotIntune_Basic.ps1: Script from the native module
 2. WindowsAutopilotIntune_Updates.ps1: Cmdlets I added in the existing module
 
+In the second file I added the below functions:
+* Set-AutopilotProfile: Change deployment profile options
+* Remove-AutoPilotProfile: Remove a Deployment Profile
+* Add-AutoPilotProfile: Create a Deployment Profile
+* Set-AutoPilotProfileAssignedGroup: Assign a group to a Deployment Profile 
+* Remove-AutoPilotProfileAssignedGroup: Remove a group from a Deployment profile
+* Get-AutoPilotProfileAssignedDevice: List assigned devices for a Deployment Profile
+* Get-AutoPilotProfileAssignments: List assigned groups for a Deployment Profile
+* Add-EnrollmentStatusPage: Create an Enrollment Status Page
+* Get-EnrollmentStatusPage: List Enrollment Status Page
+* Set-EnrollmentStatusPage: Change Enrollment Status Page option
+* Remove-EnrollmentStatusPage: Remove an Enrollment Status Page
+
 If you want to add test or add those functions, add part from the second file in the WindowsAutopilotIntune.ps1 file from the module.
 
 /!\ Those functions are not official, I added them in my own environment; don't hesitate if you have any feedback.
