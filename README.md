@@ -1,4 +1,4 @@
-# WindowsAutopilotIntune_Module_Updates
+# Module to manage Windows Autopilot with PowerShell
 ![alt text](https://github.com/damienvanrobaeys/WindowsAutopilotIntune_Module_Updates/blob/master/manage_autopilot_preview.jpg)
 
 **More cmdlet for the Windows Autopilot Intune module**
