@@ -3,11 +3,13 @@
 
 **More cmdlet for the Windows Autopilot Intune module**
 
-The repo is composed of two scripts:
-1. WindowsAutopilotIntune_Basic.ps1: Script from the native module
-2. WindowsAutopilotIntune_Updates.ps1: Cmdlets I added in the existing module
+You will first to install the original module from MS from the PowerShell Gallery:
+install-module WindowsAutopilotIntune
 
-In the second file I added the below functions:
+The repo is composed of one script:
+WindowsAutopilotIntune_Updates.ps1: Cmdlets I added in the existing module
+
+In this file I added the below functions:
 * Set-AutopilotProfile: Change deployment profile options
 * Remove-AutoPilotProfile: Remove a Deployment Profile
 * Add-AutoPilotProfile: Create a Deployment Profile
