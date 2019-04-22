@@ -1,6 +1,5 @@
 # ADD THIS IN THE WINDOWSAUTOPILOT.PS1 FILE FROM THE MODULE
 
-
 Function Set-AutoPilotProfile(){
 <#
 .SYNOPSIS
@@ -10,34 +9,37 @@ Sets Windows Autopilot profile properties.
 The Set-AutoPilotProfile cmdlet sets properties on an existing Autopilot profile.
 
 .PARAMETER id
-The ID (GUID) of the profile to be updated.
+Type: Integer - The ID (GUID) of the profile to be updated.
 
 .PARAMETER language
-The language identifier (e.g. "en-us") to be configured in the profile.
+Type: String - The language identifier (e.g. "en-us") to be configured in the profile.
 
 .PARAMETER description
-The description to be configured in the profile.
+Type: String - The description to be configured in the profile.
 
 .PARAMETER ConvertDeviceToAutopilot
-Configure the value "Convert all targeted devices to Autopilot"  
+Type: Boolean - Configure the value "Convert all targeted devices to Autopilot"  
 
 .PARAMETER OOBE_HideEULA
-Configure the OOBE option to hide or not the EULA
+Type: Boolean - Configure the OOBE option to hide or not the EULA
 
 .PARAMETER OOBE_hidePrivacySettings
-Configure the OOBE option to hide or not the privacy settings
+Type: Boolean - Configure the OOBE option to hide or not the privacy settings
 
 .PARAMETER OOBE_HideChangeAccountOpts
-Configure the OOBE option to hide or not the change account options
+Type: Boolean - Configure the OOBE option to hide or not the change account options
 
 .PARAMETER OOBE_userTypeAdmin
-Configure the user accout type as administrator. If ot set user type is Standard
+Type: Switch - Configure the user account type as administrator. 
+
+.PARAMETER OOBE_userTypeUser
+Type: Switch - Configure the user account type as standard. 
 
 .PARAMETER OOBE_NameTemplate
-Configure the OOBE option to apply a device name template
+Type: String - Configure the OOBE option to apply a device name template
 
 .PARAMETER OOBE_SkipKeyboard
-Configure the OOBE option to skip or not the keyboard selection page
+Type: String - Configure the OOBE option to skip or not the keyboard selection page
 
 .EXAMPLE
 Get a list of all Windows Autopilot profiles.
@@ -58,7 +60,6 @@ param
 	[bool]$OOBE_HideEULA,	
 	[bool]$OOBE_hidePrivacySettings,
 	[bool]$OOBE_HideChangeAccountOpts,		
-	# [bool]$OOBE_userTypeAdmin,
 	[Switch]$OOBE_userTypeAdmin,
 	[Switch]$OOBE_userTypeUser,		
 	[string]$OOBE_NameTemplate,	
@@ -226,37 +227,45 @@ The Add-AutoPilotProfile cmdlet sets properties on an existing Autopilot profile
 The ID (GUID) of the profile to be updated.
 
 .PARAMETER language
-The language identifier (e.g. "en-us") to be configured in the profile.
+Type: String - The language identifier (e.g. "en-us") to be configured in the profile.
 
 .PARAMETER description
-The description to be configured in the profile.
+Type: String - The description to be configured in the profile.
 
 .PARAMETER ConvertDeviceToAutopilot
-Configure the value "Convert all targeted devices to Autopilot"  
+Type: Boolean - Configure the value "Convert all targeted devices to Autopilot"  
 
 .PARAMETER OOBE_HideEULA
-Configure the OOBE option to hide or not the EULA
+Type: Boolean - Configure the OOBE option to hide or not the EULA
 
 .PARAMETER OOBE_hidePrivacySettings
-Configure the OOBE option to hide or not the privacy settings
+Type: Boolean - Configure the OOBE option to hide or not the privacy settings
 
 .PARAMETER OOBE_HideChangeAccountOpts
-Configure the OOBE option to hide or not the change account options
+Type: Boolean - Configure the OOBE option to hide or not the change account options
 
 .PARAMETER OOBE_userTypeAdmin
-Configure the user accout type as administrator. If ot set user type is Standard
+Type: Switch - Configure the user account type as administrator. 
+
+.PARAMETER OOBE_userTypeUser
+Type: Switch - Configure the user account type as standard. 
+
+.PARAMETER ModeUserDriven
+Type: Switch - Configure the deployment mode to user driven
+
+.PARAMETER ModeSelfDeploying
+Type: Switch - Configure the deployment mode to self deploying
 
 .PARAMETER OOBE_NameTemplate
-Configure the OOBE option to apply a device name template
+Type: String - Configure the OOBE option to apply a device name template
 
 .PARAMETER OOBE_SkipKeyboard
-Configure the OOBE option to skip or not the keyboard selection page
+Type: Boolean - Configure the OOBE option to skip or not the keyboard selection page
 
 .EXAMPLE
 Get a list of all Windows Autopilot profiles.
 
-Add-AutoPilotProfile -ID <guid> -Language "en-us"
-Add-AutoPilotProfile -ID <guid> -Language "en-us" -displayname "My testing profile" -Description "Description of my profile" -OOBE_HideEULA $True -OOBE_hidePrivacySettings $True
+Add-AutoPilotProfile -Language "en-us" -displayname "My testing profile" -Description "Description of my profile" -OOBE_HideEULA $True -OOBE_hidePrivacySettings $True
 
 
 #>
@@ -392,7 +401,7 @@ Remove a Deployment Profile
 The Remove-AutoPilotProfile allows you to remove a specific deployment profile
 
 .PARAMETER id
-Mandatory, the ID (GUID) of the profile to be retrieved.
+Mandatory, the ID (GUID) of the profile to be removed.
 
 .EXAMPLE
 Remove-AutoPilotProfile -id $id
@@ -442,10 +451,10 @@ Function Get-AutoPilotProfileAssignedDevice(){
 List all assigned devices for a specific profile ID
 
 .DESCRIPTION
-The Get-AutoPilotProfileAssignedDevice cmdlet returns the list of devices that are assigned for a deployment profile
+The Get-AutoPilotProfileAssignedDevice cmdlet returns the list of devices that are assigned to a deployment profile
 
 .PARAMETER id
-Optionally, the ID (GUID) of the profile to be retrieved.
+Type: Integer - Mandatory, the ID (GUID) of the profile to be retrieved.
 
 .EXAMPLE
 Get a list of all Windows Autopilot profiles.
@@ -501,14 +510,13 @@ Function Get-AutoPilotProfileAssignments(){
 List all assigned devices for a specific profile ID
 
 .DESCRIPTION
-The Get-AutoPilotProfileAssignedDevice cmdlet returns the list of devices that are assigned for a deployment profile
+The Get-AutoPilotProfileAssignments cmdlet returns the list of groups that ae assigned to a spcific deployment profile
 
 .PARAMETER id
-Optionally, the ID (GUID) of the profile to be retrieved.
+Type: Integer - Mandatory, the ID (GUID) of the profile to be retrieved.
 
 .EXAMPLE
-Get a list of all Windows Autopilot profiles.
-Get-AutoPilotProfileAssignedDevice -id $id
+Get-AutoPilotProfileAssignments -id $id
 #>
 [cmdletbinding()]
 param
@@ -554,17 +562,19 @@ param
 Function Remove-AutoPilotProfileAssignments(){
 <#
 .SYNOPSIS
-List all assigned devices for a specific profile ID
+Removes a specific group assigntion for a specifc deployment profile
 
 .DESCRIPTION
-The Get-AutoPilotProfileAssignedDevice cmdlet returns the list of devices that are assigned for a deployment profile
+The Remove-AutoPilotProfileAssignments cmdlet allows you to remove a group assignation for a deployment profile 
 
 .PARAMETER id
-Optionally, the ID (GUID) of the profile to be retrieved.
+Type: Integer - Mandatory, the ID (GUID) of the profile
+
+.PARAMETER groupid
+Type: Integer - Mandatory, the ID of the group
 
 .EXAMPLE
-Get a list of all Windows Autopilot profiles.
-Get-AutoPilotProfileAssignedDevice -id $id
+Remove-AutoPilotProfileAssignments -id $id
 #>
 [cmdletbinding()]
 param
@@ -604,24 +614,19 @@ param
 Function Set-AutoPilotProfileAssignedGroup(){
 <#
 .SYNOPSIS
-Assigns a user to a Windows Autopilot device.
+Assigns a group to a Windows Autopilot profile.
 
 .DESCRIPTION
-The Set-AutoPilotDeviceAssignedUser cmdlet assign the specified user and sets a display name to show on the Windows Autopilot device.
+The Set-AutoPilotProfileAssignedGroup cmdlet allows you to assign a specific group to a specific deployment profile
 
 .PARAMETER id
-The Windows Autopilot device id (mandatory).
+Type: Integer - Mandatory, the ID (GUID) of the profile
 
-.PARAMETER userPrincipalName
-The user principal name (mandatory).
-
-.PARAMETER displayName
-The name to display during Windows Autopilot enrollment (mandatory).
+.PARAMETER groupid
+Type: Integer - Mandatory, the ID of the group
 
 .EXAMPLE
-Assign a user and a name to display during enrollment to a Windows Autopilot device. 
-
-Set-AutoPilotDeviceAssignedUser -id $id -userPrincipalName $userPrincipalName -DisplayName "John Doe"
+Set-AutoPilotProfileAssignedGroup -id $id -groupid $groupid
 #>
     [cmdletbinding()]
     param
@@ -673,25 +678,23 @@ $json = @"
 Function Get-EnrollmentStatusPage(){
 <#
 .SYNOPSIS
-Gets Windows Autopilot profile details.
+List enrollment status page
 
 .DESCRIPTION
-The Get-AutoPilotProfile cmdlet returns either a list of all Windows Autopilot profiles for the current Azure AD tenant, or information for the specific profile specified by its ID.
+The Get-EnrollmentStatusPage cmdlet returns available enrollment status page with their options
 
 .PARAMETER id
-Optionally, the ID (GUID) of the profile to be retrieved.
+Mandatory, the ID (GUID) of the status page
 
 .EXAMPLE
-Get a list of all Windows Autopilot profiles.
-
 Get-EnrollmentStatusPage
 #>
+
 [cmdletbinding()]
 param
 (
     [Parameter(Mandatory=$True)] $id
 )
-
 
     # Defining Variables
     $graphApiVersion = "beta"
@@ -737,7 +740,7 @@ Function Add-EnrollmentStatusPage(){
 Adds a new Windows Autopilot Enrollment Status Page.
 
 .DESCRIPTION
-The Set-EnrollmentStatusPage cmdlet sets properties on an existing Autopilot profile.
+The Add-EnrollmentStatusPage cmdlet sets properties on an existing Autopilot profile.
 
 .PARAMETER DisplayName
 Type: String - Configure the display name of the enrollment status page
@@ -767,11 +770,7 @@ Type: Boolean - Configure the option: Block device use until all apps and profil
 Type: Integer - Configure the option: Show error when installation takes longer than specified number of minutes
 
 .EXAMPLE
-Get a list of all Windows Autopilot profiles.
-
-Add-EnrollmentStatusPage 
 Add-EnrollmentStatusPage -Message "Oops an error occured, please contact your support" -HideProgress $True -AllowResetOnError $True
-Add-EnrollmentStatusPage -HideProgress $true -Description "desc" -message "oops" -displayname "yoooo" -AllowCollectLogs $true -AllowUseOnFailure $true -AllowResetOnError $true -BlockDeviceUntilComplete $true -TimeoutInMinutes 20
 #>
 
 
@@ -890,9 +889,6 @@ Type: Boolean - Configure the option: Block device use until all apps and profil
 Type: Integer - Configure the option: Show error when installation takes longer than specified number of minutes
 
 .EXAMPLE
-Get a list of all Windows Autopilot profiles.
-
-Set-EnrollmentStatusPage -id $id
 Set-EnrollmentStatusPage -id $id -Message "Oops an error occured, please contact your support" -HideProgress $True -AllowResetOnError $True
 #>
 [cmdletbinding()]
@@ -1015,7 +1011,7 @@ param
 Function Remove-EnrollmentStatusPage(){
 <#
 .SYNOPSIS
-Remove an enrollment status page
+Remove a specific enrollment status page
 
 .DESCRIPTION
 The Remove-EnrollmentStatusPage allows you to remove a specific enrollment status page 
@@ -1031,7 +1027,6 @@ param
 (
     [Parameter(Mandatory=$True)] $id
 )
-
 
     # Defining Variables
     $graphApiVersion = "beta"
