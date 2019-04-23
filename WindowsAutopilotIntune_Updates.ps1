@@ -156,7 +156,7 @@ param
 			$OOBE_SkipKeyboard = $Profile_OOBE_SkipKeyboard
 		}	
 
-	If(($OOBE_HideChangeAccountOpts -eq ""))
+	If(($OOBE_HideChangeAccountOpts -eq $null))
 		{
 			$OOBE_HideChangeAccountOpts = $Profile_OOBE_HideChangeAccountOpts
 		}			
@@ -538,7 +538,14 @@ param
 		$Group_ID = $response.Value.target.groupId
 		ForEach($Group in $Group_ID)
 			{
-				get-azureadgroup | where {$_.ObjectId -like $Group}			
+				Try
+					{
+						get-azureadgroup | where {$_.ObjectId -like $Group}	
+					}
+				Catch
+					{
+						$Group
+					}			
 			}
     }
     catch {
