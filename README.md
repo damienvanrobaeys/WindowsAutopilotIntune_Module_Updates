@@ -3,6 +3,8 @@
 
 **More cmdlet for the Windows Autopilot Intune module**
 
+- Update 23/09/19: Add the possibility to enable white glove in a deployment profile
+
 You will first to install the original module from MS from the PowerShell Gallery:
 install-module WindowsAutopilotIntune
 
@@ -14,7 +16,7 @@ In this file I added the below functions:
 * Remove-AutoPilotProfile: Remove a Deployment Profile
 * Add-AutoPilotProfile: Create a Deployment Profile
 * Set-AutoPilotProfileAssignedGroup: Assign a group to a Deployment Profile 
-* Remove-AutoPilotProfileAssignedGroup: Remove a group from a Deployment profile
+* Remove-AutoPilotProfileAssignments: Remove a group from a Deployment profile
 * Get-AutoPilotProfileAssignedDevice: List assigned devices for a Deployment Profile
 * Get-AutoPilotProfileAssignments: List assigned groups for a Deployment Profile
 * Add-EnrollmentStatusPage: Create an Enrollment Status Page
